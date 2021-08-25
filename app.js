@@ -8,14 +8,14 @@ const connectDB = require("./db");
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const { emailJobsQueue } = require("./controllers/queues/emailQueue");
+// const { emailJobsQueue } = require("./controllers/queues/emailQueue");
 
 const routes = require("./routes");
 
 const { json, urlencoded } = express;
 
 connectDB();
-emailJobsQueue;
+// emailJobsQueue;
 
 const app = express();
 const server = http.createServer(app);
