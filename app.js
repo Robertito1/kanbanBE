@@ -3,7 +3,6 @@ const path = require("path");
 const http = require("http");
 const express = require("express");
 const cors = require('cors')
-const socketio = require("socket.io");
 const { notFound, errorHandler } = require("./middleware/error");
 const connectDB = require("./db");
 const { join } = require("path");
@@ -21,27 +20,15 @@ connectDB();
 const app = express();
 const server = http.createServer(app);
 
-
-io.on("connection", (socket) => {
-  console.log("connected");
-});
-
 if (process.env.NODE_ENV === "development") {
   app.use(logger("dev"));
 }
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 
-app.use((req, res, next) => {
-  req.io = io;
-  next();
-});
 
 app.use(routes);
 app.get("/", (req, res) => {
