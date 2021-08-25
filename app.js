@@ -23,10 +23,7 @@ const server = http.createServer(app);
 if (process.env.NODE_ENV === "development") {
   app.use(logger("dev"));
 }
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://kanban-system.herokuapp.com');
-  next();
-});
+app.use(cors({credentials: true, origin: 'https://kanban-system.herokuapp.com'}));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
