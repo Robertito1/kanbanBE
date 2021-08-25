@@ -29,7 +29,6 @@ app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 
-
 app.use(routes);
 app.get("/", (req, res) => {
   res.send("API is running");
