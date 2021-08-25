@@ -21,11 +21,6 @@ connectDB();
 const app = express();
 const server = http.createServer(app);
 
-const io = socketio(server, {
-  cors: {
-    origin: "*",
-  },
-});
 
 io.on("connection", (socket) => {
   console.log("connected");
@@ -34,7 +29,7 @@ io.on("connection", (socket) => {
 if (process.env.NODE_ENV === "development") {
   app.use(logger("dev"));
 }
-app.use(cors())
+app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
