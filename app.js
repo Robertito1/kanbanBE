@@ -2,6 +2,7 @@ const colors = require("colors");
 const path = require("path");
 const http = require("http");
 const express = require("express");
+const cors = require('cors')
 const socketio = require("socket.io");
 const { notFound, errorHandler } = require("./middleware/error");
 const connectDB = require("./db");
@@ -33,6 +34,7 @@ io.on("connection", (socket) => {
 if (process.env.NODE_ENV === "development") {
   app.use(logger("dev"));
 }
+app.use(cors())
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
